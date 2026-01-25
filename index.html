@@ -4,9 +4,24 @@
   <meta charset="UTF-8">
   <title>Study Space</title>
   <link rel="stylesheet" href="style.css">
-</head>
-  
-<script>
+</head>  
+
+<body>
+
+<header>
+  <h1>Study Space</h1>
+  <p>A shared place for notes and collaboration</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="notes.html">Notes</a>
+  <a href="chat.html">Chat</a>
+  <button onclick="toggleDark()">🌙</button>
+
+</nav>
+
+  <script>
   // Run as soon as page loads
   (function () {
     const savedTheme = localStorage.getItem("theme");
@@ -28,22 +43,7 @@
         (isDark ? "dark" : "light");
     }
   }
-</script>  
-
-<body>
-
-<header>
-  <h1>Study Space</h1>
-  <p>A shared place for notes and collaboration</p>
-</header>
-
-<nav>
-  <a href="index.html">Home</a>
-  <a href="notes.html">Notes</a>
-  <a href="chat.html">Chat</a>
-  <button onclick="toggleDark()">🌙</button>
-
-</nav>
+</script>
 
 <div class="container">
   <h2>Welcome</h2>
