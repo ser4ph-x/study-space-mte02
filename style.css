@@ -180,14 +180,3 @@ iframe {
   }
 }
 
-@media (max-width: 600px) {
-  nav {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  nav a {
-    display: block;
-  }
-}
