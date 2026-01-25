@@ -7,15 +7,32 @@
 </head>
   
   <script>
-  function toggleDark() {
-    document.body.classList.toggle("dark");
+  // Apply saved theme on page load
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+    updateDiscordTheme("dark");
+  }
 
+  function toggleDark() {
+    const body = document.body;
+    body.classList.toggle("dark");
+
+    if (body.classList.contains("dark")) {
+      localStorage.setItem("theme", "dark");
+      updateDiscordTheme("dark");
+    } else {
+      localStorage.setItem("theme", "light");
+      updateDiscordTheme("light");
+    }
+  }
+
+  function updateDiscordTheme(theme) {
     const iframe = document.getElementById("discordWidget");
-    const isDark = document.body.classList.contains("dark");
+    if (!iframe) return;
 
     iframe.src =
-      "https://discord.com/widget?id=1464988856628678746&theme=" +
-      (isDark ? "dark" : "light");
+      "https://discord.com/widget?id=1464988856628678746&theme=" + theme;
   }
 </script>
 
