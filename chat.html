@@ -7,32 +7,26 @@
 </head>
   
   <script>
-  // Apply saved theme on page load
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark") {
-    document.body.classList.add("dark");
-    updateDiscordTheme("dark");
-  }
+  // Run as soon as page loads
+  (function () {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark");
+    }
+  })();
 
   function toggleDark() {
     const body = document.body;
-    body.classList.toggle("dark");
+    const isDark = body.classList.toggle("dark");
 
-    if (body.classList.contains("dark")) {
-      localStorage.setItem("theme", "dark");
-      updateDiscordTheme("dark");
-    } else {
-      localStorage.setItem("theme", "light");
-      updateDiscordTheme("light");
-    }
-  }
+    localStorage.setItem("theme", isDark ? "dark" : "light");
 
-  function updateDiscordTheme(theme) {
     const iframe = document.getElementById("discordWidget");
-    if (!iframe) return;
-
-    iframe.src =
-      "https://discord.com/widget?id=1464988856628678746&theme=" + theme;
+    if (iframe) {
+      iframe.src =
+        "https://discord.com/widget?id=1464988856628678746&theme=" +
+        (isDark ? "dark" : "light");
+    }
   }
 </script>
 
