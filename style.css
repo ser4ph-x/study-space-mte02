@@ -1,22 +1,6 @@
 /* =========================
-   CSS RESET & VARIABLES
+   RESET & VARIABLES
 ========================= */
-:root {
-  --bg: #f3f4f6;
-  --text: #111827;
-  --card: #ffffff;
-  --header: #1f2937;
-  --nav: #111827;
-}
-
-body.dark {
-  --bg: #0f172a;
-  --text: #e5e7eb;
-  --card: #1e293b;
-  --header: #020617;
-  --nav: #020617;
-}
-
 
 * {
   box-sizing: border-box;
@@ -43,7 +27,7 @@ body.dark {
 }
 
 /* =========================
-   GLOBAL STYLES
+   GLOBAL
 ========================= */
 
 body {
@@ -105,7 +89,7 @@ nav button:hover {
 }
 
 /* =========================
-   MAIN CONTAINER
+   CONTENT
 ========================= */
 
 .container {
@@ -116,10 +100,6 @@ nav button:hover {
   border-radius: 10px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
-
-/* =========================
-   CONTENT
-========================= */
 
 h2 {
   margin-bottom: 10px;
@@ -151,7 +131,7 @@ ul li a:hover {
 }
 
 /* =========================
-   IFRAME (CHAT)
+   CHAT
 ========================= */
 
 iframe {
@@ -159,7 +139,7 @@ iframe {
 }
 
 /* =========================
-   MOBILE RESPONSIVE
+   MOBILE
 ========================= */
 
 @media (max-width: 600px) {
@@ -171,7 +151,6 @@ iframe {
 
   nav a,
   nav button {
-    display: block;
     width: 100%;
   }
 
@@ -179,4 +158,3 @@ iframe {
     margin: 15px;
   }
 }
-
