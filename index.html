@@ -5,6 +5,20 @@
   <title>Study Space</title>
   <link rel="stylesheet" href="style.css">
 </head>
+  
+  <script>
+  function toggleDark() {
+    document.body.classList.toggle("dark");
+
+    const iframe = document.getElementById("discordWidget");
+    const isDark = document.body.classList.contains("dark");
+
+    iframe.src =
+      "https://discord.com/widget?id=1464988856628678746&theme=" +
+      (isDark ? "dark" : "light");
+  }
+</script>
+
 <body>
 
 <header>
