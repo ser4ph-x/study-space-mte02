@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Notes | Study Space</title>
@@ -18,31 +18,77 @@
   <a href="notes.html">Notes</a>
   <a href="chat.html">Chat</a>
   <button onclick="toggleDark()">🌙</button>
-
 </nav>
 
-  <script>
+<div class="container">
+  <h2>Study Notes</h2>
+
+  <!-- 🔍 SEARCH BAR (CENTERED & SMALL) -->
+  <div style="display:flex; justify-content:center; gap:10px; margin:20px 0;">
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Search notes..."
+      onkeyup="searchNotes()"
+      style="width:280px; padding:8px;"
+    >
+    <button onclick="clearSearch()">❌</button>
+  </div>
+
+  <p id="noResults" style="display:none; color:#ef4444; text-align:center;">
+    No results found.
+  </p>
+
+  <!-- 📘 SEMESTER 1 -->
+  <h3>Semester 1</h3>
+  <ul class="notes-list">
+    <li><a href="notes/semester-1/math.pdf">Mathematics</a></li>
+    <li><a href="notes/semester-1/physics.pdf">Physics</a></li>
+    <li><a href="notes/semester-1/electrical.pdf">Basic Electrical</a></li>
+  </ul>
+
+  <!-- 📗 SEMESTER 2 -->
+  <h3>Semester 2</h3>
+  <ul class="notes-list">
+    <li><a href="notes/semester-2/programming.pdf">Programming</a></li>
+    <li><a href="notes/semester-2/electronics.pdf">Electronics</a></li>
+    <li><a href="notes/semester-2/mechanics.pdf">Mechanics</a></li>
+  </ul>
+</div>
+
+<!-- =========================
+     SCRIPTS
+========================= -->
+
+<script>
+  // 🌙 Load saved theme
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+  }
+
+  function toggleDark() {
+    const isDark = document.body.classList.toggle("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  }
+
+  // 🔍 Search + highlight
   function searchNotes() {
-    const input = document.getElementById("searchInput");
-    const query = input.value.toLowerCase();
+    const query = document.getElementById("searchInput").value.toLowerCase();
     const lists = document.querySelectorAll(".notes-list");
     const noResults = document.getElementById("noResults");
-
     let found = false;
 
     lists.forEach(list => {
-      const items = list.querySelectorAll("li");
-
-      items.forEach(item => {
+      list.querySelectorAll("li").forEach(item => {
         const link = item.querySelector("a");
-        const originalText = link.innerText;
+        const text = link.innerText;
 
-        // Remove previous highlights
-        link.innerHTML = originalText;
+        // reset highlight
+        link.innerHTML = text;
 
-        if (originalText.toLowerCase().includes(query) && query !== "") {
+        if (text.toLowerCase().includes(query) && query !== "") {
           const regex = new RegExp(`(${query})`, "gi");
-          link.innerHTML = originalText.replace(regex, "<mark>$1</mark>");
+          link.innerHTML = text.replace(regex, "<mark>$1</mark>");
           item.style.display = "";
           found = true;
         } else if (query === "") {
@@ -56,105 +102,19 @@
 
     noResults.style.display = found ? "none" : "block";
   }
-</script>
 
-  <script>
+  // ❌ Clear search
   function clearSearch() {
-    const input = document.getElementById("searchInput");
-    const lists = document.querySelectorAll(".notes-list");
-    const noResults = document.getElementById("noResults");
+    document.getElementById("searchInput").value = "";
+    document.getElementById("noResults").style.display = "none";
 
-    input.value = "";
-
-    lists.forEach(list => {
-      const items = list.querySelectorAll("li");
-      items.forEach(item => {
-        const link = item.querySelector("a");
-        link.innerHTML = link.innerText; // remove highlights
-        item.style.display = "";
-      });
+    document.querySelectorAll(".notes-list li").forEach(item => {
+      const link = item.querySelector("a");
+      link.innerHTML = link.innerText;
+      item.style.display = "";
     });
-
-    noResults.style.display = "none";
   }
 </script>
-
-  <script>
-  // Run as soon as page loads
-  (function () {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") {
-      document.body.classList.add("dark");
-    }
-  })();
-
-  function toggleDark() {
-    const body = document.body;
-    const isDark = body.classList.toggle("dark");
-
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-
-    const iframe = document.getElementById("discordWidget");
-    if (iframe) {
-      iframe.src =
-        "https://discord.com/widget?id=1464988856628678746&theme=" +
-        (isDark ? "dark" : "light");
-    }
-  }
-</script>
-
-  <div style="display:flex; gap:10px; margin-bottom:15px;">
-  <input
-    type="text"
-    id="searchInput"
-    placeholder="Search notes..."
-    onkeyup="searchNotes()"
-    style="flex:1; padding:8px;"
-  >
-  <button onclick="clearSearch()" style="padding:8px 12px;">❌</button>
-</div>
-
-<div class="container">
-  <h2>Study Notes</h2>
-
-  <input
-    type="text"
-    id="searchInput"
-    placeholder="Search notes..."
-    onkeyup="searchNotes()"
-    style="width:100%; padding:10px; margin-bottom:15px;"
-  >
-
-  <p id="noResults" style="display:none; color:#ef4444; margin-bottom:15px;">
-  No results found.
-</p>
-
-  <h3>Semester 1</h3>
-  <ul class="notes-list">
-    <li>
-      <a href="notes/semester-1/math.pdf">Mathematics</a>
-    </li>
-    <li>
-      <a href="notes/semester-1/physics.pdf">Physics</a>
-    </li>
-    <li>
-      <a href="notes/semester-1/electrical.pdf">Basic Electrical</a>
-    </li>
-  </ul>
-
-  <h3>Semester 2</h3>
-  <ul class="notes-list">
-    <li>
-      <a href="notes/semester-2/programming.pdf">Programming</a>
-    </li>
-    <li>
-      <a href="notes/semester-2/electronics.pdf">Electronics</a>
-    </li>
-    <li>
-      <a href="notes/semester-2/mechanics.pdf">Mechanics</a>
-    </li>
-  </ul>
-</div>
 
 </body>
 </html>
