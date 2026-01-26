@@ -45,18 +45,47 @@
   }
 </script>
 
+  <script>
+  function searchNotes() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+
+    const lists = document.querySelectorAll("ul");
+
+    lists.forEach(list => {
+      const items = list.getElementsByTagName("li");
+
+      for (let i = 0; i < items.length; i++) {
+        const text = items[i].innerText.toLowerCase();
+        items[i].style.display = text.includes(input) ? "" : "none";
+      }
+    });
+  }
+</script>
+
 <div class="container">
   <h2>Study Notes</h2>
 
+  <!-- Search box -->
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="Search notes..."
+    onkeyup="searchNotes()"
+    style="width:100%; padding:10px; margin-bottom:15px;"
+  >
+
   <h3>Semester 1</h3>
-  <ul>
-    <li><a href="notes/semester-1/math.pdf">Mathematics</a></li>
-    <li><a href="notes/semester-1/physics.pdf">Physics</a></li>
+  <ul id="notesList">
+    <li>Mathematics</li>
+    <li>Physics</li>
+    <li>Basic Electrical</li>
   </ul>
 
   <h3>Semester 2</h3>
-  <ul>
-    <li><a href="notes/semester-2/programming.pdf">Programming</a></li>
+  <ul id="notesList2">
+    <li>Programming</li>
+    <li>Electronics</li>
+    <li>Mechanics</li>
   </ul>
 </div>
 
