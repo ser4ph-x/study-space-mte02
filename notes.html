@@ -59,6 +59,27 @@
 </script>
 
   <script>
+  function clearSearch() {
+    const input = document.getElementById("searchInput");
+    const lists = document.querySelectorAll(".notes-list");
+    const noResults = document.getElementById("noResults");
+
+    input.value = "";
+
+    lists.forEach(list => {
+      const items = list.querySelectorAll("li");
+      items.forEach(item => {
+        const link = item.querySelector("a");
+        link.innerHTML = link.innerText; // remove highlights
+        item.style.display = "";
+      });
+    });
+
+    noResults.style.display = "none";
+  }
+</script>
+
+  <script>
   // Run as soon as page loads
   (function () {
     const savedTheme = localStorage.getItem("theme");
