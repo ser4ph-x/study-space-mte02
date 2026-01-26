@@ -62,10 +62,29 @@
   }
 </script>
 
+  <script>
+  function searchNotes() {
+    const query = document
+      .getElementById("searchInput")
+      .value
+      .toLowerCase();
+
+    const lists = document.querySelectorAll(".notes-list");
+
+    lists.forEach(list => {
+      const items = list.querySelectorAll("li");
+
+      items.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        item.style.display = text.includes(query) ? "" : "none";
+      });
+    });
+  }
+</script>
+
 <div class="container">
   <h2>Study Notes</h2>
 
-  <!-- Search box -->
   <input
     type="text"
     id="searchInput"
@@ -75,17 +94,29 @@
   >
 
   <h3>Semester 1</h3>
-  <ul id="notesList">
-    <li>Mathematics</li>
-    <li>Physics</li>
-    <li>Basic Electrical</li>
+  <ul class="notes-list">
+    <li>
+      <a href="notes/semester-1/math.pdf">Mathematics</a>
+    </li>
+    <li>
+      <a href="notes/semester-1/physics.pdf">Physics</a>
+    </li>
+    <li>
+      <a href="notes/semester-1/electrical.pdf">Basic Electrical</a>
+    </li>
   </ul>
 
   <h3>Semester 2</h3>
-  <ul id="notesList2">
-    <li>Programming</li>
-    <li>Electronics</li>
-    <li>Mechanics</li>
+  <ul class="notes-list">
+    <li>
+      <a href="notes/semester-2/programming.pdf">Programming</a>
+    </li>
+    <li>
+      <a href="notes/semester-2/electronics.pdf">Electronics</a>
+    </li>
+    <li>
+      <a href="notes/semester-2/mechanics.pdf">Mechanics</a>
+    </li>
   </ul>
 </div>
 
