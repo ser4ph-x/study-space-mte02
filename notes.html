@@ -43,26 +43,7 @@
         (isDark ? "dark" : "light");
     }
   }
-</script>
-
-  <script>
-  function searchNotes() {
-    const input = document.getElementById("searchInput").value.toLowerCase();
-
-    const lists = document.querySelectorAll("ul");
-
-    lists.forEach(list => {
-      const items = list.getElementsByTagName("li");
-
-      for (let i = 0; i < items.length; i++) {
-        const text = items[i].innerText.toLowerCase();
-        items[i].style.display = text.includes(input) ? "" : "none";
-      }
-    });
-  }
-</script>
-
-  <script>
+<script>
   function searchNotes() {
     const query = document
       .getElementById("searchInput")
@@ -70,15 +51,26 @@
       .toLowerCase();
 
     const lists = document.querySelectorAll(".notes-list");
+    const noResults = document.getElementById("noResults");
+
+    let found = false;
 
     lists.forEach(list => {
       const items = list.querySelectorAll("li");
 
       items.forEach(item => {
         const text = item.innerText.toLowerCase();
-        item.style.display = text.includes(query) ? "" : "none";
+
+        if (text.includes(query)) {
+          item.style.display = "";
+          found = true;
+        } else {
+          item.style.display = "none";
+        }
       });
     });
+
+    noResults.style.display = found ? "none" : "block";
   }
 </script>
 
@@ -92,6 +84,10 @@
     onkeyup="searchNotes()"
     style="width:100%; padding:10px; margin-bottom:15px;"
   >
+
+  <p id="noResults" style="display:none; color:#ef4444; margin-bottom:15px;">
+  No results found.
+</p>
 
   <h3>Semester 1</h3>
   <ul class="notes-list">
