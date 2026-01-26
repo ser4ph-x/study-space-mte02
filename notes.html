@@ -82,6 +82,17 @@
   }
 </script>
 
+  <div style="display:flex; gap:10px; margin-bottom:15px;">
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="Search notes..."
+    onkeyup="searchNotes()"
+    style="flex:1; padding:8px;"
+  >
+  <button onclick="clearSearch()" style="padding:8px 12px;">❌</button>
+</div>
+
 <div class="container">
   <h2>Study Notes</h2>
 
