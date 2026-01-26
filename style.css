@@ -158,3 +158,10 @@ iframe {
     margin: 15px;
   }
 }
+
+mark {
+  background: #fde047;
+  color: black;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
