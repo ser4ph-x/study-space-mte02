@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | Study Space</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container" style="max-width:400px; margin-top:100px; text-align:center;">
+  <h2>Login</h2>
+
+  <input id="email" type="email" placeholder="Email"
+    style="width:100%; padding:10px; margin:10px 0;">
+
+  <input id="password" type="password" placeholder="Password"
+    style="width:100%; padding:10px; margin-bottom:10px;">
+
+  <button onclick="login()" style="width:100%;">Login</button>
+
+  <p id="error" style="color:#ef4444; margin-top:10px;"></p>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    // 🔴 YOUR FIREBASE CONFIG
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+
+  function login() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    auth.signInWithEmailAndPassword(email, password)
+      .then(() => {
+        window.location.href = "index.html";
+      })
+      .catch(err => {
+        document.getElementById("error").innerText = err.message;
+      });
+  }
+</script>
+
+</body>
+</html>
